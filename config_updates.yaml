@@ -1,0 +1,35 @@
+# Mises à jour suggérées pour config.yaml
+# Copiez ces sections dans votre config.yaml existant
+
+# Mise à jour des saisons valides pour inclure 2024-25
+api:
+  max_game_ids: 20
+  valid_seasons: 
+    - "2023-2024"
+    - "2024-2025"  # ← Nouvelle saison ajoutée
+
+# Configuration étendue pour les prédicteurs
+# Mettez à jour les chemins vers les nouveaux modèles après réentraînement
+predictors:
+  Baseline: {}
+  Linear:
+    model_paths:
+      - "models/Ridge_Regression_2024-12-19T10:30:00.joblib"  # ← Nouveau modèle
+  Tree:
+    model_paths:
+      - "models/XGBoost_Regression_2024-12-19T10:45:00.joblib"  # ← Nouveau modèle
+  MLP:
+    model_paths:
+      - "models/MLP_Regression_2024-12-19T11:00:00.pth"  # ← Nouveau modèle
+
+# Configuration optionnelle pour le monitoring
+monitoring:
+  enable_performance_tracking: true
+  alert_on_prediction_errors: true
+  max_acceptable_mae: 12.0  # MAE maximum acceptable pour les scores
+
+# Configuration pour l'intégration continue des données
+data_pipeline:
+  auto_update_frequency: "daily"  # daily, weekly, manual
+  seasons_to_monitor: ["2024-2025"]
+  backup_before_update: true
